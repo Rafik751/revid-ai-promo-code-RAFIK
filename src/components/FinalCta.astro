@@ -1,0 +1,32 @@
+---
+import { site, finalCta } from '../data/content';
+---
+<section class="wrap final">
+  <div class="box">
+    <div class="txt">
+      <h2>{finalCta.title}</h2>
+      <p>{finalCta.body}</p>
+    </div>
+    <div class="act">
+      <p class="code">{site.code}</p>
+      <button type="button" class="btn light" data-copy={site.code}>Copy code</button>
+      {site.checkoutUrl && <a class="btn light-ghost" href={site.checkoutUrl} rel="noopener sponsored" target="_blank">Go to checkout</a>}
+      <p class="note">{finalCta.note}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final { padding-block: 2rem clamp(3.5rem, 8vw, 6rem); }
+  .box { background: var(--ink); color: #fff; border-radius: 22px; padding: clamp(2rem, 5vw, 3.5rem); display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: center; }
+  .txt { display: grid; gap: 0.9rem; }
+  .txt p { color: #c5cad6; }
+  .act { display: grid; gap: 0.9rem; justify-items: start; }
+  .code { font: 800 clamp(2.4rem, 2rem + 3vw, 3.6rem) / 1 var(--font-display); letter-spacing: 0.04em; color: #b8acff; }
+  .light { background: #fff; color: var(--ink); border-color: #fff; }
+  .light:hover { background: #b8acff; border-color: #b8acff; color: var(--ink); }
+  .light.is-copied { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .light-ghost { background: transparent; color: #fff; border-color: #fff; }
+  .note { color: #c5cad6; font-size: var(--step--1); }
+  @media (max-width: 800px) { .box { grid-template-columns: 1fr; } }
+</style>

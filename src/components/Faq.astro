@@ -1,0 +1,28 @@
+---
+import { faq } from '../data/content';
+---
+<section class="section wrap" id="faq">
+  <div class="section-head">
+    <h2>{faq.title}</h2>
+    <p>{faq.intro}</p>
+  </div>
+
+  <div class="list">
+    {faq.items.map((i, idx) => (
+      <details open={idx === 0}>
+        <summary>{i.q}</summary>
+        <p>{i.a}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .list { max-width: 46rem; border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; padding: 1.25rem 2.5rem 1.25rem 0; font: 650 1.1rem var(--font-display); position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); font-size: 1.6rem; font-weight: 400; color: var(--accent); }
+  details[open] summary::after { content: '–'; }
+  details p { padding-bottom: 1.4rem; color: var(--muted); }
+</style>

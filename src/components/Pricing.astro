@@ -1,0 +1,45 @@
+---
+import { pricing } from '../data/content';
+---
+<section class="section wrap" id="pricing">
+  <div class="section-head">
+    <h2>{pricing.title}</h2>
+    <p>{pricing.intro}</p>
+  </div>
+
+  <div class="plans">
+    {pricing.plans.map((p) => (
+      <article class:list={['plan', { tested: p.verified }]}>
+        {p.verified && <span class="pill pill-ok">Tested with RAFIK</span>}
+        <h3>{p.name}</h3>
+        <p class="tag">{p.tagline}</p>
+        <p class="price">
+          <s>{p.price}</s>
+          <strong>{p.discounted}</strong><span>/month{p.verified ? '' : '*'}</span>
+        </p>
+        <ul>{p.features.map((f) => <li>{f}</li>)}</ul>
+        <p class="status">{p.verified ? 'Verified — first cycle only' : 'Projected at 20%'}</p>
+      </article>
+    ))}
+  </div>
+  <p class="foot">* {pricing.footnote}</p>
+</section>
+
+<style>
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; align-items: stretch; }
+  .plan { background: var(--surface); border-radius: var(--radius); padding: 1.75rem; display: grid; gap: 0.6rem; align-content: start; border: 2px solid transparent; }
+  .plan:not(.tested) { opacity: 0.86; }
+  .tested { border-color: var(--accent); box-shadow: 0 16px 32px rgba(75, 52, 232, 0.16); }
+  .tested .pill { justify-self: start; }
+  .tag { color: var(--muted); }
+  .price { display: flex; align-items: baseline; gap: 0.5rem; margin-block: 0.5rem; }
+  .price s { color: var(--muted); }
+  .price strong { font: 800 2.2rem var(--font-display); letter-spacing: -0.02em; }
+  .price span { color: var(--muted); }
+  ul { list-style: none; margin: 0 0 0.5rem; padding: 0; display: grid; gap: 0.5rem; }
+  ul li { padding-left: 1.6rem; position: relative; }
+  ul li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 0.9rem; height: 0.5rem; border-left: 2.5px solid var(--ok); border-bottom: 2.5px solid var(--ok); transform: rotate(-45deg) translateY(-30%); }
+  .status { font-size: var(--step--1); font-weight: 650; color: var(--muted); border-top: 1px solid var(--line); padding-top: 0.8rem; margin-top: auto; }
+  .tested .status { color: var(--ok); }
+  .foot { margin-top: 1.25rem; color: var(--muted); font-size: var(--step--1); }
+</style>

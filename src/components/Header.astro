@@ -1,0 +1,26 @@
+---
+import { site, nav } from '../data/content';
+---
+<header class="bar">
+  <div class="wrap bar-in">
+    <a href="#top" class="brand">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#4b34e8"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      {site.brand}
+    </a>
+    <nav aria-label="Sections" class="links">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+    <a href="#code" class="btn btn-sm">Get the code</a>
+  </div>
+</header>
+
+<style>
+  .bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .bar-in { display: flex; align-items: center; gap: 1.5rem; padding-block: 0.7rem; }
+  .brand { display: inline-flex; align-items: center; gap: 0.55rem; font: 700 1.05rem var(--font-display); text-decoration: none; margin-right: auto; }
+  .links { display: flex; gap: 1.4rem; font-size: 0.95rem; font-weight: 500; }
+  .links a { text-decoration: none; color: var(--muted); }
+  .links a:hover { color: var(--ink); }
+  .btn-sm { padding: 0.45rem 1rem; font-size: 0.9rem; }
+  @media (max-width: 760px) { .links { display: none; } }
+</style>
